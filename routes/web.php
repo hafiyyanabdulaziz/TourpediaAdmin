@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
-});
+route::prefix('admin')
+    ->group(function ()
+    {
+        Route::get('/', 'Admin\AdminController@index');
+    }
+);
 
 Auth::routes();
 
