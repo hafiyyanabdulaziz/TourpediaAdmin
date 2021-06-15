@@ -25,6 +25,13 @@
             </nav>
         </div>
     </header>
+    @if ($message = Session::get('not_admin'))
+        <div class="container">
+            <div class="alert alert-warning alert-block">
+                <strong>{{ $message }}</strong>
+            </div>
+        </div>
+    @endif
     <main class="my-auto">
         <div class="container">
             <h1 class="page-title">Tourpedia - Coming Soon</h1>
