@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +14,5 @@
 */
 
 Route::get('/', function () {
-    return view('landing.index');
+    return view('welcome');
 });
-
-route::prefix('admin')
-    ->middleware(['auth','isAdmin'])
-    ->group(function ()
-    {
-        Route::get('/', 'Admin\AdminController@index');
-    }
-);
-
-Auth::routes();
