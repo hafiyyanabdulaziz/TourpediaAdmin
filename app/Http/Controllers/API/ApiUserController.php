@@ -53,4 +53,9 @@ class ApiUserController extends Controller
             );
         }
     }
+
+    public function login(Request $request)
+    {
+        # code...
+    }
 }
