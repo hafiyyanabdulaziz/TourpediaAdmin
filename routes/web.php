@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
-Route::middleware(['auth:sanctum', 'verified', 'is.admin'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified', 'is.admin'])->get('/admin', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::prefix('admin')
+    ->middleware(['auth:sanctum', 'verified', 'is.admin'])
+    ->group(function () {
+        Route::get('/', [AdminController::class, 'index']);
+    });
