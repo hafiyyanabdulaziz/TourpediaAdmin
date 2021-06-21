@@ -62,9 +62,10 @@ class DestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function edit(Destination $destination)
+    public function edit($id)
     {
-        //
+        $item = Destination::findOrFail($id);
+        return view('admin.destination.edit', ['item' => $item]);
     }
 
     /**
@@ -76,7 +77,12 @@ class DestinationController extends Controller
      */
     public function update(Request $request, Destination $destination)
     {
-        //
+        $destination->update([
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'link_maps' => $request['link_maps']
+        ]);
+        return redirect()->route('destination.index');
     }
 
     /**
@@ -85,8 +91,10 @@ class DestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Destination $destination)
+    public function destroy($id)
     {
-        //
+        $item = Destination::findOrFail($id);
+        $item->delete();
+        return redirect()->route('destination.index');
     }
 }
