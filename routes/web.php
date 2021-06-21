@@ -27,4 +27,5 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::resource('destination', '\App\Http\Controllers\Admin\DestinationController');
+        Route::resource('destination-image', '\App\Http\Controllers\Admin\DestinationImageController');
     });
