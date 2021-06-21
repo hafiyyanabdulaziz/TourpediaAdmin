@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Gallery</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tambah Image</h1>
         </div>
 
         @if ($errors->any())
@@ -21,22 +21,22 @@
 
         <div class="card-shadow">
             <div class="card-body">
-                <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('destination-image.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="title">Paket Travel</label>
-                        <select name="travel_packages_id" required class="form-control">
-                            <option value="">Pilih Paket Travel</option>
-                            @foreach ($travel_packages as $travel_package)
-                                <option value="{{ $travel_package->id }}">
-                                    {{ $travel_package->title }}
+                        <label for="title">Destination</label>
+                        <select name="id_destinations" required class="form-control">
+                            <option value="">Pilih Destination</option>
+                            @foreach ($destinations as $destination)
+                                <option value="{{ $destination->id }}">
+                                    {{ $destination->title }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" class="form-control" name="image" placeholder="Image">
+                        <label for="link_image">Image</label>
+                        <input type="file" class="form-control" name="link_image" placeholder="Image">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Simpan

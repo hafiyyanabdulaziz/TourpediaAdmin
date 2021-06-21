@@ -24,8 +24,8 @@ class DestinationImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_destinations' => ['required', 'integer', 'exists:destination,id'],
-            'link_image' => ['required', 'string']
+            'id_destinations' => ['required', 'integer', 'exists:destinations,id'],
+            'link_image' => ['required', 'image']
         ];
     }
 }

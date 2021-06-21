@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DestinationImageRequest;
+use App\Models\Destination;
 use App\Models\DestinationImage;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class DestinationImageController extends Controller
 {
@@ -26,7 +30,8 @@ class DestinationImageController extends Controller
      */
     public function create()
     {
-        //
+        $destinations = Destination::all();
+        return view('admin.destination-image.create', ['destinations' => $destinations]);
     }
 
     /**
@@ -35,9 +40,14 @@ class DestinationImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DestinationImageRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['link_image'] = $request->file('link_image')->store('assets/image/destination', 'public');
+
+        //dd($data);
+        DestinationImage::create($data);
+        return redirect()->route('destination-image.index');
     }
 
     /**

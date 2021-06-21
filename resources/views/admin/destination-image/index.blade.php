@@ -31,14 +31,14 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->destination->title }}</td>
                                     <td>
-                                        <img src="{{ Storage::url($item->image) }}" style="width: 150px"
+                                        <img src="{{ Storage::url($item->link_image) }}" style="width: 150px"
                                             class="img-thumbnail">
                                     </td>
                                     <td>
-                                        <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('destination-image.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('gallery.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('destination-image.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')
