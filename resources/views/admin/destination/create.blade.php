@@ -21,7 +21,7 @@
 
         <div class="card-shadow">
             <div class="card-body">
-                <form action="{{ route('travel-package.store') }}" method="post">
+                <form action="{{ route('destination.store') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -29,47 +29,14 @@
                             value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
-                        <label for="location">Location</label>
-                        <input type="text" name="location" class="form-control" placeholder="location"
-                            value="{{ old('location') }}">
+                        <label for="about">Description</label>
+                        <textarea name="description" rows="10"
+                            class="d-block w-100 form-control">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="about">About</label>
-                        <textarea name="about" rows="10" class="d-block w-100 form-control">{{ old('about') }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="featured_event">Featured Event</label>
-                        <input type="text" class="form-control" name="featured_event" placeholder="Featured Event"
-                            value="{{ old('featured_event') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="language">Language</label>
-                        <input type="text" class="form-control" name="language" placeholder="Language"
-                            value="{{ old('language') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="foods">Foods</label>
-                        <input type="text" class="form-control" name="foods" placeholder="Foods"
-                            value="{{ old('foods') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="departure_date">Departure Date</label>
-                        <input type="date" class="form-control" name="departure_date" placeholder="Departure Date"
-                            value="{{ old('departure_date') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duration</label>
-                        <input type="text" class="form-control" name="duration" placeholder="Duration"
-                            value="{{ old('duration') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Type</label>
-                        <input type="text" class="form-control" name="type" placeholder="Type" value="{{ old('type') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" name="price" placeholder="Price"
-                            value="{{ old('price') }}">
+                        <label for="location">Link Maps</label>
+                        <input type="text" name="link_maps" class="form-control" placeholder="link maps"
+                            value="{{ old('link_maps') }}">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Simpan

@@ -29,7 +29,7 @@ class DestinationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.destination.create');
     }
 
     /**
@@ -40,7 +40,9 @@ class DestinationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Destination::create($data);
+        return redirect()->route('destination.index');
     }
 
     /**
