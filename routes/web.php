@@ -25,5 +25,6 @@ Route::get('/', function () {
 Route::prefix('admin')
     ->middleware(['auth:sanctum', 'verified', 'is.admin'])
     ->group(function () {
-        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::resource('destination', '\App\Http\Controllers\Admin\DestinationController');
     });
