@@ -6,11 +6,54 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Rules\Password;
 
 class ApiUserController extends Controller
 {
+    public function about_me(Request $request)
+    {
+        return ResponseFormatter::success($request->user(), 'Data profile user berhasil diambil');
+    }
+
+    public function login(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => ['email', 'required'],
+                'password' => 'required'
+            ]);
+
+            //$credentials = request(['email', 'password']);
+            if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return ResponseFormatter::error([
+                    'message' => 'Unauthorized'
+                ], 'Authentication failed', 500);
+            }
+
+            $user = User::where('email', $request->email)->first();
+            if (!Hash::check($request->password, $user->password, [])) {
+                throw new \Exception('Invalid Credentials');
+            }
+
+            $token = $user->createToken('authToken')->plainTextToken;
+
+            return ResponseFormatter::success(
+                [
+                    'access_token' => $token,
+                    'user' => $user
+                ],
+                'User Registered'
+            );
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $error,
+            ], 'Authentication Failed', 500);
+        }
+    }
+
     public function register(Request $request)
     {
         try {
@@ -26,7 +69,9 @@ class ApiUserController extends Controller
                 [
                     'name' => $request->name,
                     'email' => $request->email,
-                    'password' => Hash::make($request->password)
+                    'password' => Hash::make($request->password),
+                    'phone' => $request->phone,
+                    'roles' => 'USER'
                 ]
             );
 
@@ -37,7 +82,6 @@ class ApiUserController extends Controller
             return ResponseFormatter::success(
                 [
                     'access_token' => $token,
-                    'token_type' => 'Bearer',
                     'user' => $user
                 ],
                 'User Registered'
@@ -54,8 +98,10 @@ class ApiUserController extends Controller
         }
     }
 
-    public function login(Request $request)
+    public function logout(Request $request)
     {
-        # code...
+        $token = $request->user()->currentAccessToken()->delete();
+
+        return ResponseFormatter::success($token, 'Token Revoked');
     }
 }

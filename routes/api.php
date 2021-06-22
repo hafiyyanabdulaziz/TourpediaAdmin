@@ -16,11 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('user')
+    ->middleware(['auth:sanctum'])
+    ->group(function () {
+        Route::get('about-me', [ApiUserController::class, 'about_me']);
+        Route::post('logout', [ApiUserController::class, 'logout']);
+});
+Route::prefix('user')->group(function(){
+    Route::post('register', [ApiUserController::class, 'register']);
+    Route::post('login', [ApiUserController::class, 'login']);
 });
 
-Route::post('register', [ApiUserController::class, 'register']);
+
 
 Route::resource('destinations', '\App\Http\Controllers\API\ApiDestinationController');
 

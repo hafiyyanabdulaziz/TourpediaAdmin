@@ -16,7 +16,7 @@ class ApiDestinationController extends Controller
      */
     public function index()
     {
-        $item = Destination::all();
+        $item = Destination::with('images')->get();
         try {
             return ResponseFormatter::success([
                 'data' => $item
