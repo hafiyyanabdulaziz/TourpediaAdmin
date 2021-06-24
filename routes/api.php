@@ -21,8 +21,11 @@ Route::prefix('user')
     ->group(function () {
         Route::get('about-me', [ApiUserController::class, 'about_me']);
         Route::post('logout', [ApiUserController::class, 'logout']);
-});
-Route::prefix('user')->group(function(){
+        Route::post('favorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'favorite']);
+        Route::post('unfavorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'unfavorite']);
+        Route::get('my-favorites', [App\Http\Controllers\FavoriteController::class, 'myFavorites']);
+    });
+Route::prefix('user')->group(function () {
     Route::post('register', [ApiUserController::class, 'register']);
     Route::post('login', [ApiUserController::class, 'login']);
 });
