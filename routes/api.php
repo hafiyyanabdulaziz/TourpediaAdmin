@@ -21,17 +21,12 @@ Route::prefix('user')
     ->group(function () {
         Route::get('about-me', [ApiUserController::class, 'about_me']);
         Route::post('logout', [ApiUserController::class, 'logout']);
-        Route::post('favorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'favorite']);
-        Route::post('unfavorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'unfavorite']);
-        Route::get('my-favorites', [App\Http\Controllers\FavoriteController::class, 'myFavorites']);
+        Route::post('destinations/favorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'favorite']);
+        Route::post('destinations/unfavorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'unfavorite']);
+        Route::get('destinations/my-favorites', [App\Http\Controllers\FavoriteController::class, 'myFavorites']);
+        Route::resource('destinations', '\App\Http\Controllers\API\ApiDestinationController');
     });
 Route::prefix('user')->group(function () {
     Route::post('register', [ApiUserController::class, 'register']);
     Route::post('login', [ApiUserController::class, 'login']);
 });
-
-
-
-Route::resource('destinations', '\App\Http\Controllers\API\ApiDestinationController');
-
-//Route::get('destinations', [ApiDestinationController::class, 'index']);

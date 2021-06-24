@@ -17,9 +17,16 @@ class Destination extends Model
         'link_maps'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function images()
     {
-        return $this->hasMany(DestinationImage::class, 'id_destinations', 'id');
+        $images = $this->hasMany(DestinationImage::class, 'id_destinations', 'id');
+        return $images;
     }
 
     public function favorited()

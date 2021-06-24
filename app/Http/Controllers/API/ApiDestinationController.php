@@ -19,7 +19,7 @@ class ApiDestinationController extends Controller
         $item = Destination::with('images')->get();
         try {
             return ResponseFormatter::success([
-                'data' => $item
+                'item' => $item
             ], 'Success');
         } catch (\Throwable $th) {
             return ResponseFormatter::error(['error' => $th], 'Error', 500);
@@ -34,23 +34,23 @@ class ApiDestinationController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'title' => ['required', 'string'],
-                'description' => ['required', 'string'],
-                'link_maps' => ['required', 'string'],
-            ]);
+        // try {
+        //     $request->validate([
+        //         'title' => ['required', 'string'],
+        //         'description' => ['required', 'string'],
+        //         'link_maps' => ['required', 'string'],
+        //     ]);
 
-            Destination::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'link_maps' => $request->link_maps,
-            ]);
+        //     Destination::create([
+        //         'title' => $request->title,
+        //         'description' => $request->description,
+        //         'link_maps' => $request->link_maps,
+        //     ]);
 
-            return ResponseFormatter::success(['request' => $request], 'Success');
-        } catch (\Throwable $th) {
-            return ResponseFormatter::error(['error' => $th], 'Error', 500);
-        }
+        //     return ResponseFormatter::success(['request' => $request], 'Success');
+        // } catch (\Throwable $th) {
+        //     return ResponseFormatter::error(['error' => $th], 'Error', 500);
+        // }
     }
 
     /**

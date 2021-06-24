@@ -17,6 +17,13 @@ class DestinationImage extends Model
         'link_image'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'id_destinations'
+    ];
+
     public function destination()
     {
         return $this->belongsTo(Destination::class, 'id_destinations', 'id');

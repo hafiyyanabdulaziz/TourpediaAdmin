@@ -67,7 +67,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function favorites()
+    public function destination_favorites()
     {
         return $this->belongsToMany(Destination::class, 'favorite_destinations', 'user_id', 'destination_id')->withTimestamps();
     }
