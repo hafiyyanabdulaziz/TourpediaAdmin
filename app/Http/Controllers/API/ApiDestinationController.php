@@ -59,10 +59,14 @@ class ApiDestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function show(Destination $destination)
+    public function show($id)
     {
         try {
-            return ResponseFormatter::success(['destination' => $destination], 'Success');
+            $item = Destination::with('images')->findOrFail($id);
+            //$item = Destination::findOrFail($id);
+
+
+            return ResponseFormatter::success($item, 'Success');
         } catch (Exception $th) {
             return ResponseFormatter::error(['error' => $th], 'Error', 500);
         }
