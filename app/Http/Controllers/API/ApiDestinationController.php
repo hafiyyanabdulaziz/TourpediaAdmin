@@ -31,8 +31,8 @@ class ApiDestinationController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            //$result = Destination::where('title', 'like', "%" . $search . "%");
-            $result = DB::table('destinations')->where('title', 'like', "%" . $search . "%");
+            $result = Destination::with('images')->where('title', 'like', "%" . $search . "%")->paginate();;
+            //$result = DB::table('destinations')->where('title', 'like', "%" . $search . "%")->paginate(30);
             if ($result) {
                 return ResponseFormatter::success($result, 'Success');
             } else {
