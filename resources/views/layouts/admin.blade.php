@@ -94,7 +94,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('culinary-image.index') }}">
                     <i class="fas fa-images"></i>
                     <span>Images</span></a>
             </li>
