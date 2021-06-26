@@ -34,10 +34,10 @@
                                     <td>{{ $item->description }}</td>
                                     <td>{{ $item->link_maps }}</td>
                                     <td>
-                                        <a href="{{ route('destination.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('culinary.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('destination.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('culinary.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

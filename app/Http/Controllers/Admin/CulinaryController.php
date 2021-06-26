@@ -90,8 +90,10 @@ class CulinaryController extends Controller
      * @param  \App\Models\Culinary  $culinary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Culinary $culinary)
+    public function destroy($id)
     {
-        //
+        $item = Culinary::findOrFail($id);
+        $item->delete();
+        return redirect()->route('culinary.index');
     }
 }
