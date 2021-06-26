@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ApiCulinaryController;
 use App\Http\Controllers\API\ApiDestinationController;
 use App\Http\Controllers\API\ApiUserController;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ Route::prefix('user')->group(function () {
     Route::post('login', [ApiUserController::class, 'login']);
 });
 
-Route::prefix('culinary')->group(function () {
+Route::prefix('culinaries')->group(function () {
     Route::get('/', [ApiCulinaryController::class, 'index']);
     Route::get('random', [ApiCulinaryController::class, 'random']);
     Route::get('{destination}', [ApiCulinaryController::class, 'show']);
