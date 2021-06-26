@@ -16,7 +16,7 @@ class CulinaryController extends Controller
      */
     public function index()
     {
-        $items = Destination::all();
+        $items = Culinary::all();
         return view('admin.culinary.index', ['items' => $items]);
     }
 
@@ -38,7 +38,16 @@ class CulinaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'price' => ['required', 'integer'],
+            'restaurant' => ['required', 'string'],
+            'link_maps' => ['required', 'string']
+        ]);
+        $data = $request->all();
+        Culinary::create($data);
+        return redirect()->route('culinary.index');
     }
 
     /**
