@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Culinary;
+use App\Models\CulinaryImage;
 use App\Models\DestinationImage;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CulinaryImageController extends Controller
      */
     public function index()
     {
-        $items = DestinationImage::with(['destination'])->get();
+        $items = CulinaryImage::with(['culinary'])->get();
         return view('admin.culinary-image.index', ['items' => $items]);
     }
 
@@ -27,7 +28,8 @@ class CulinaryImageController extends Controller
      */
     public function create()
     {
-        //
+        $culinaries = Culinary::all();
+        return view('admin.culinary-image.create', ['culinaries' => $culinaries]);
     }
 
     /**
@@ -38,7 +40,16 @@ class CulinaryImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_culinary' => ['required', 'integer'],
+            'link_image' => ['required', 'image'],
+        ]);
+        $data = $request->all();
+        $data['link_image'] = $request->file('link_image')->store('assets/image/culinary', 'public');
+
+        //dd($data);
+        CulinaryImage::create($data);
+        return redirect()->route('culinary-image.index');
     }
 
     /**
@@ -81,8 +92,10 @@ class CulinaryImageController extends Controller
      * @param  \App\Models\Culinary  $culinary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Culinary $culinary)
+    public function destroy($id)
     {
-        //
+        $item = CulinaryImage::findOrFail($id);
+        $item->delete();
+        return redirect()->route('culinary-image.index');
     }
 }

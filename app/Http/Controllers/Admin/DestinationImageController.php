@@ -90,8 +90,10 @@ class DestinationImageController extends Controller
      * @param  \App\Models\DestinationImage  $destinationImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DestinationImage $destinationImage)
+    public function destroy($id)
     {
-        //
+        $item = DestinationImage::findOrFail($id);
+        $item->delete();
+        return redirect()->route('destination-image.index');
     }
 }

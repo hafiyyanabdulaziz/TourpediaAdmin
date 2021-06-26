@@ -21,15 +21,15 @@
 
         <div class="card-shadow">
             <div class="card-body">
-                <form action="{{ route('destination-image.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('culinary-image.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="title">Destination</label>
-                        <select name="id_destinations" required class="form-control">
-                            <option value="">Pilih Destination</option>
-                            @foreach ($destinations as $destination)
-                                <option value="{{ $destination->id }}">
-                                    {{ $destination->title }}
+                        <label for="title">Culinary</label>
+                        <select name="id_culinary" required class="form-control">
+                            <option value="">Pilih Culinary</option>
+                            @foreach ($culinaries as $culinary)
+                                <option value="{{ $culinary->id }}">
+                                    {{ $culinary->title }}
                                 </option>
                             @endforeach
                         </select>

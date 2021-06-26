@@ -29,15 +29,12 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->destination->title }}</td>
+                                    <td>{{ $item->culinary->title }}</td>
                                     <td>
                                         <img src="{{ Storage::url($item->link_image) }}" style="width: 150px"
                                             class="img-thumbnail">
                                     </td>
                                     <td>
-                                        <a href="{{ route('culinary-image.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
                                         <form action="{{ route('culinary-image.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
