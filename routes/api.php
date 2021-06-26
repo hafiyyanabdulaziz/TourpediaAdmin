@@ -30,4 +30,5 @@ Route::prefix('user')->group(function () {
     Route::post('login', [ApiUserController::class, 'login']);
 });
 
+Route::get('destinations/random', [ApiDestinationController::class, 'random']);
 Route::resource('destinations', '\App\Http\Controllers\API\ApiDestinationController');

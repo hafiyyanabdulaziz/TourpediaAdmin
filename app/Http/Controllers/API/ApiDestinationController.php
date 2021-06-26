@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\DB;
 
 class ApiDestinationController extends Controller
 {
+    public function random()
+    {
+        $item = Destination::with('images')->get()->random(3);
+        try {
+            return ResponseFormatter::success([
+                'item' => $item,
+            ], 'Success');
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error(['error' => $th], 'Error', 500);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +29,14 @@ class ApiDestinationController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->search;
+        $search = $request->input('search');
         if ($search) {
+            //$result = Destination::where('title', 'like', "%" . $search . "%");
             $result = DB::table('destinations')->where('title', 'like', "%" . $search . "%");
             if ($result) {
-                ResponseFormatter::success($result, 'Success');
+                return ResponseFormatter::success($result, 'Success');
             } else {
-                ResponseFormatter::success(null, 'Success');
+                return ResponseFormatter::success(null, 'Success');
             }
             //         ResponseFormatter::success(null, 'Success');
         }
@@ -33,12 +45,11 @@ class ApiDestinationController extends Controller
         $total = Destination::count();
         $favorite = FavoriteDestination::count();
         try {
-            $search;
-            // return ResponseFormatter::success([
-            //     'item' => $item,
-            //     'total' => $total,
-            //     'favorite' => $favorite
-            // ], 'Success');
+            return ResponseFormatter::success([
+                'item' => $item,
+                'total' => $total,
+                'favorite' => $favorite
+            ], 'Success');
         } catch (\Throwable $th) {
             return ResponseFormatter::error(['error' => $th], 'Error', 500);
         }
