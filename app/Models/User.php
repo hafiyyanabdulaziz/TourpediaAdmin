@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Destination::class, 'favorite_destinations', 'user_id', 'destination_id')->withTimestamps();
     }
+
+    public function culinary_favorites()
+    {
+        return $this->belongsToMany(Culinary::class, 'favorite_culinaries', 'user_id', 'culinary_id')->withTimestamps();
+    }
 }

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\API\ResponseFormatter;
+use App\Models\Culinary;
 use App\Models\Destination;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function favorite(Destination $destination)
+    public function destination_favorite(Destination $destination)
     {
         $data = (bool) Auth::user()->destination_favorites()->find($destination->id);
         if (!$data) {
@@ -20,7 +20,7 @@ class FavoriteController extends Controller
         return ResponseFormatter::success(null, 'success menghapus data');
     }
 
-    public function check_favorite(Destination $destination)
+    public function destination_check_favorite(Destination $destination)
     {
         $data = (bool) Auth::user()->destination_favorites()->find($destination->id);
         if (!$data) {
@@ -31,9 +31,38 @@ class FavoriteController extends Controller
         return ResponseFormatter::success(true, 'data ada');
     }
 
-    public function myFavorites()
+    public function destination_myFavorites()
     {
         $item = Auth::user()->destination_favorites;
+
+        return ResponseFormatter::success($item, 'success menampilkan data');
+    }
+
+    public function culinary_favorite(Culinary $culinary)
+    {
+        $data = (bool) Auth::user()->culinary_favorites()->find($culinary->id);
+        if (!$data) {
+            Auth::user()->culinary_favorites()->attach($culinary->id);
+            return ResponseFormatter::success(null, 'success menambahkan data');
+        }
+        Auth::user()->culinary_favorites()->detach($culinary->id);
+        return ResponseFormatter::success(null, 'success menghapus data');
+    }
+
+    public function culinary_check_favorite(Culinary $culinary)
+    {
+        $data = (bool) Auth::user()->culinary_favorites()->find($culinary->id);
+        if (!$data) {
+            Auth::user()->culinary_favorites()->attach($culinary->id);
+            return ResponseFormatter::success(false, 'data tidak ada');
+        }
+        Auth::user()->culinary_favorites()->detach($culinary->id);
+        return ResponseFormatter::success(true, 'data ada');
+    }
+
+    public function culinary_myFavorites()
+    {
+        $item = Auth::user()->culinary_favorites;
 
         return ResponseFormatter::success($item, 'success menampilkan data');
     }
