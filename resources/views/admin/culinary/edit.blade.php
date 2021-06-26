@@ -21,7 +21,7 @@
 
         <div class="card-shadow">
             <div class="card-body">
-                <form action="{{ route('destination.update', $item->id) }}" method="post">
+                <form action="{{ route('culinary.update', $item->id) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
@@ -33,6 +33,16 @@
                         <label for="about">Description</label>
                         <textarea name="description" rows="10"
                             class="d-block w-100 form-control">{{ $item->description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" class="form-control" placeholder="Price"
+                            value="{{ $item->price }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="restaurant">Restaurant Name</label>
+                        <input type="text" name="restaurant" class="form-control" placeholder="Restaurant Name"
+                            value="{{ $item->restaurant }}">
                     </div>
                     <div class="form-group">
                         <label for="link_maps">Link Maps</label>

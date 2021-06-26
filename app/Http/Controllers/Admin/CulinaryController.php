@@ -67,9 +67,10 @@ class CulinaryController extends Controller
      * @param  \App\Models\Culinary  $culinary
      * @return \Illuminate\Http\Response
      */
-    public function edit(Culinary $culinary)
+    public function edit($id)
     {
-        //
+        $item = Culinary::findOrFail($id);
+        return view('admin.culinary.edit', ['item' => $item]);
     }
 
     /**
@@ -81,7 +82,14 @@ class CulinaryController extends Controller
      */
     public function update(Request $request, Culinary $culinary)
     {
-        //
+        $culinary->update([
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'restaurant' => $request['restaurant'],
+            'link_maps' => $request['link_maps']
+        ]);
+        return redirect()->route('culinary.index');
     }
 
     /**
