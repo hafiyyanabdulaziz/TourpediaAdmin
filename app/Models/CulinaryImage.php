@@ -6,27 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Culinary extends Model
+class CulinaryImage extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'description',
-        'price',
-        'restaurant',
-        'link_maps'
+        'id_culinary',
+        'link_image'
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
+        'id_destinations'
     ];
 
-    public function images()
+    public function culinary()
     {
-        $images = $this->hasMany(CulinaryImage::class, 'id_culinary', 'id');
-        return $images;
+        return $this->belongsTo(Culinary::class, 'id_culinary', 'id');
     }
 }

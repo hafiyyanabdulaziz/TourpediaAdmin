@@ -30,4 +30,5 @@ Route::prefix('admin')
         Route::resource('destination-image', '\App\Http\Controllers\Admin\DestinationImageController');
 
         Route::resource('culinary', '\App\Http\Controllers\Admin\CulinaryController');
+        Route::resource('culinary-image', '\App\Http\Controllers\Admin\CulinaryImageController');
     });
