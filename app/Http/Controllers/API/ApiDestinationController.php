@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
+use App\Models\FavoriteDestination;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApiDestinationController extends Controller
 {
@@ -14,13 +16,29 @@ class ApiDestinationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        if ($search) {
+            $result = DB::table('destinations')->where('title', 'like', "%" . $search . "%");
+            if ($result) {
+                ResponseFormatter::success($result, 'Success');
+            } else {
+                ResponseFormatter::success(null, 'Success');
+            }
+            //         ResponseFormatter::success(null, 'Success');
+        }
+
         $item = Destination::with('images')->get();
+        $total = Destination::count();
+        $favorite = FavoriteDestination::count();
         try {
-            return ResponseFormatter::success([
-                'item' => $item
-            ], 'Success');
+            $search;
+            // return ResponseFormatter::success([
+            //     'item' => $item,
+            //     'total' => $total,
+            //     'favorite' => $favorite
+            // ], 'Success');
         } catch (\Throwable $th) {
             return ResponseFormatter::error(['error' => $th], 'Error', 500);
         }

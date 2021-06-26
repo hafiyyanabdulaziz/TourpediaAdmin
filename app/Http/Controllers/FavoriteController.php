@@ -14,14 +14,21 @@ class FavoriteController extends Controller
         $data = (bool) Auth::user()->destination_favorites()->find($destination->id);
         if (!$data) {
             Auth::user()->destination_favorites()->attach($destination->id);
+            return ResponseFormatter::success(null, 'success menambahkan data');
         }
-        return ResponseFormatter::success(null, 'success mengnambah data');
-    }
-
-    public function unfavorite(Destination $destination)
-    {
         Auth::user()->destination_favorites()->detach($destination->id);
         return ResponseFormatter::success(null, 'success menghapus data');
+    }
+
+    public function check_favorite(Destination $destination)
+    {
+        $data = (bool) Auth::user()->destination_favorites()->find($destination->id);
+        if (!$data) {
+            Auth::user()->destination_favorites()->attach($destination->id);
+            return ResponseFormatter::success(false, 'data tidak ada');
+        }
+        Auth::user()->destination_favorites()->detach($destination->id);
+        return ResponseFormatter::success(true, 'data ada');
     }
 
     public function myFavorites()

@@ -22,8 +22,8 @@ Route::prefix('user')
         Route::get('about-me', [ApiUserController::class, 'about_me']);
         Route::post('logout', [ApiUserController::class, 'logout']);
         Route::post('destinations/favorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'favorite']);
-        Route::post('destinations/unfavorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'unfavorite']);
         Route::get('destinations/my-favorites', [App\Http\Controllers\FavoriteController::class, 'myFavorites']);
+        Route::post('destinations/check-favorite/{destination}', [App\Http\Controllers\FavoriteController::class, 'check_favorite']);
     });
 Route::prefix('user')->group(function () {
     Route::post('register', [ApiUserController::class, 'register']);
