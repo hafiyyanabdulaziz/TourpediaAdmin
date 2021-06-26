@@ -88,7 +88,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{ route('culinary.index') }}">
                     <i class="fas fa-table"></i>
                     <span>Data</span></a>
             </li>

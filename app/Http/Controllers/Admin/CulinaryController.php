@@ -17,7 +17,7 @@ class CulinaryController extends Controller
     public function index()
     {
         $items = Destination::all();
-        return view('admin.destination.index', ['items' => $items]);
+        return view('admin.culinary.index', ['items' => $items]);
     }
 
     /**
@@ -27,7 +27,7 @@ class CulinaryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.culinary.create');
     }
 
     /**
