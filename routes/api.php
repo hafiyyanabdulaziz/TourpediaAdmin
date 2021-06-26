@@ -30,5 +30,11 @@ Route::prefix('user')->group(function () {
     Route::post('login', [ApiUserController::class, 'login']);
 });
 
+Route::prefix('culinary')->group(function () {
+    Route::get('/', [ApiCulinaryController::class, 'index']);
+    Route::get('random', [ApiCulinaryController::class, 'random']);
+    Route::get('{destination}', [ApiCulinaryController::class, 'show']);
+});
+
 Route::get('destinations/random', [ApiDestinationController::class, 'random']);
 Route::resource('destinations', '\App\Http\Controllers\API\ApiDestinationController');
