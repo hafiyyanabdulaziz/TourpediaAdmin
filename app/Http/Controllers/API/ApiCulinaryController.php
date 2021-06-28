@@ -12,7 +12,7 @@ class ApiCulinaryController extends Controller
 {
     public function random()
     {
-        $item = Culinary::with('images')->get()->random(5);
+        $item = Culinary::with('images')->get()->random(3);
         try {
             return ResponseFormatter::success([
                 'item' => $item,
