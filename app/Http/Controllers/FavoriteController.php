@@ -24,10 +24,8 @@ class FavoriteController extends Controller
     {
         $data = (bool) Auth::user()->destination_favorites()->find($destination->id);
         if (!$data) {
-            Auth::user()->destination_favorites()->attach($destination->id);
             return ResponseFormatter::success(false, 'data tidak ada');
         }
-        Auth::user()->destination_favorites()->detach($destination->id);
         return ResponseFormatter::success(true, 'data ada');
     }
 
@@ -53,10 +51,8 @@ class FavoriteController extends Controller
     {
         $data = (bool) Auth::user()->culinary_favorites()->find($culinary->id);
         if (!$data) {
-            Auth::user()->culinary_favorites()->attach($culinary->id);
             return ResponseFormatter::success(false, 'data tidak ada');
         }
-        Auth::user()->culinary_favorites()->detach($culinary->id);
         return ResponseFormatter::success(true, 'data ada');
     }
 
