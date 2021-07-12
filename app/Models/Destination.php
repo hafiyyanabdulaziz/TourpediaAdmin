@@ -14,6 +14,10 @@ class Destination extends Model
     protected $fillable = [
         'title',
         'description',
+        'category',
+        'time',
+        'address',
+        'contact',
         'link_maps'
     ];
 

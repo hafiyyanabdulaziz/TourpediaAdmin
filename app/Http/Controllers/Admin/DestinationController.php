@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DestinationRequest;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class DestinationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DestinationRequest $request)
     {
         $data = $request->all();
         Destination::create($data);
@@ -80,7 +81,11 @@ class DestinationController extends Controller
         $destination->update([
             'title' => $request['title'],
             'description' => $request['description'],
-            'link_maps' => $request['link_maps']
+            'category' => $request['category'],
+            'time' => $request['time'],
+            'address' => $request['address'],
+            'contact' => $request['contact'],
+            'link_maps' => $request['link_maps'],
         ]);
         return redirect()->route('destination.index');
     }
