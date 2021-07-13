@@ -15,7 +15,9 @@ class Culinary extends Model
         'title',
         'description',
         'price',
-        'restaurant',
+        'time',
+        'address',
+        'contact',
         'link_maps'
     ];
 
