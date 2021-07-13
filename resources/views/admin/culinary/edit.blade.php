@@ -36,13 +36,23 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" name="price" class="form-control" placeholder="Price"
+                        <input type="text" name="price" class="form-control" placeholder="Rp 10.000 - Rp 30.000"
                             value="{{ $item->price }}">
                     </div>
                     <div class="form-group">
-                        <label for="restaurant">Restaurant Name</label>
-                        <input type="text" name="restaurant" class="form-control" placeholder="Restaurant Name"
-                            value="{{ $item->restaurant }}">
+                        <label for="time">Time</label>
+                        <input type="text" name="time" class="form-control" placeholder="10.00 - 20.00"
+                            value="{{ $item->time }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" name="contact" class="form-control" placeholder="0812123123123"
+                            value="{{ $item->contact }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" class="form-control" placeholder="Jl. Raya Bojongsoang"
+                            value="{{ $item->address }}">
                     </div>
                     <div class="form-group">
                         <label for="link_maps">Link Maps</label>

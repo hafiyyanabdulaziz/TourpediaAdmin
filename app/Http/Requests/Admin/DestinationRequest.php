@@ -26,6 +26,10 @@ class DestinationRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
+            'category' => ['required', 'string'],
+            'time' => ['required', 'string'],
+            'address' => ['required', 'string'],
+            'contact' => ['required', 'string'],
             'link_maps' => ['required', 'string']
         ];
     }

@@ -35,9 +35,6 @@
                                             class="img-thumbnail">
                                     </td>
                                     <td>
-                                        <a href="{{ route('destination-image.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
                                         <form action="{{ route('destination-image.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf

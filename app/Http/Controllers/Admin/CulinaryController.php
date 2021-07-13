@@ -41,8 +41,10 @@ class CulinaryController extends Controller
         $request->validate([
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'integer'],
-            'restaurant' => ['required', 'string'],
+            'price' => ['required', 'string'],
+            'time' => ['required', 'string'],
+            'address' => ['required', 'string'],
+            'contact' => ['required', 'string'],
             'link_maps' => ['required', 'string']
         ]);
         $data = $request->all();
@@ -86,7 +88,9 @@ class CulinaryController extends Controller
             'title' => $request['title'],
             'description' => $request['description'],
             'price' => $request['price'],
-            'restaurant' => $request['restaurant'],
+            'time' => $request['time'],
+            'address' => $request['address'],
+            'contact' => $request['contact'],
             'link_maps' => $request['link_maps']
         ]);
         return redirect()->route('culinary.index');

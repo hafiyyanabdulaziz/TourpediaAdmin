@@ -35,6 +35,31 @@
                             class="d-block w-100 form-control">{{ $item->description }}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" required class="form-control">
+                            <option value="{{ $item->category }}">{{ $item->category }}</option>
+                            <option value="Wisata Buatan">Wisata Buatan</option>
+                            <option value="Wisata Alam">Wisata Alam</option>
+                            <option value="Wisata Air">Wisata Air</option>
+                            <option value="Wisata Binatang">Wisata Binatang</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="text" name="time" class="form-control" placeholder="09.00 - 18.00"
+                            value="{{ $item->time }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" name="contact" class="form-control" placeholder="0812123123123"
+                            value="{{ $item->contact }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" class="form-control" placeholder="Jl Bojongsoang"
+                            value="{{ $item->address }}">
+                    </div>
+                    <div class="form-group">
                         <label for="link_maps">Link Maps</label>
                         <input type="text" class="form-control" name="link_maps" placeholder="link maps"
                             value="{{ $item->link_maps }}">
