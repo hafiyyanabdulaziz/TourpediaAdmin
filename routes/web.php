@@ -31,4 +31,6 @@ Route::prefix('admin')
 
         Route::resource('culinary', '\App\Http\Controllers\Admin\CulinaryController');
         Route::resource('culinary-image', '\App\Http\Controllers\Admin\CulinaryImageController');
+
+        Route::resource('user', '\App\Http\Controllers\Admin\UserController');
     });

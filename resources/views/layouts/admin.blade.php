@@ -19,6 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <link href="{{ url('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -46,6 +48,16 @@
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span></a>
             </li>
 
             <!-- Divider -->
@@ -207,11 +219,11 @@
     <script src="{{ url('assets/admin/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ url('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{ url('assets/admin/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ url('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ url('assets/admin/js/demo/datatables-demo.js') }}"></script>
 
 </body>
 
