@@ -31,7 +31,19 @@ class ApiDestinationController extends Controller
     {
         $search = $request->input('search');
         if ($search) {
-            $result = Destination::with('images')->where('title', 'like', "%" . $search . "%")->paginate();;
+            $result = Destination::with('images')->where('title', 'like', "%" . $search . "%")->paginate();
+            //$result = DB::table('destinations')->where('title', 'like', "%" . $search . "%")->paginate(30);
+            if ($result) {
+                return ResponseFormatter::success($result, 'Success');
+            } else {
+                return ResponseFormatter::success(null, 'Success');
+            }
+            //         ResponseFormatter::success(null, 'Success');
+        }
+
+        $category = $request->input('category');
+        if ($category) {
+            $result = Destination::with('images')->where('category', '=', $category)->paginate();
             //$result = DB::table('destinations')->where('title', 'like', "%" . $search . "%")->paginate(30);
             if ($result) {
                 return ResponseFormatter::success($result, 'Success');
